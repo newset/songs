@@ -3,6 +3,7 @@ var Songs = function($scope,$http){
 	var base_url = 'http://localhost/songs/file.php';
 
 	$scope.songs = [];
+	$scope.list = [];
 	$scope.current = null;
 	$scope.page = 1;
 	$scope.total = 0;
@@ -12,11 +13,15 @@ var Songs = function($scope,$http){
 	$scope.lyrics = [];
 
 	$scope.setup = function(){
-		var url = base_url + '?action=init';
+		// var url = base_url + '?action=init';
 		
-		$http.get(url).success(function(data){
-			console.log(data);
-		});
+		// $http.get(url).success(function(data){
+		// 	console.log(data);
+		// });
+	}
+
+	$scope.change_current = function(song,index){
+		$scope.current = song;
 	}
 
 	$scope.init = function(){
@@ -27,8 +32,13 @@ var Songs = function($scope,$http){
 		var url = base_url + '?action=get_songs&page='+page;
 		
 		$http.get(url).success(function(data){
-			console.log(data);
+			$scope.songs = data;
+			console.log($scope.songs);
 		});
+	}
+
+	$scope.refresh_page = function(){
+
 	}
 
 	$scope.next = function() {
@@ -43,5 +53,21 @@ var Songs = function($scope,$http){
 		
 	}
 
+	$scope.search = function(){
+		var name = current.song,
+			singer = current.singer_1,
+			ulr = 'http://geci.me/api/lyric/'+name;
+
+		$http.get(url).success(function(data){
+
+		});
+	}
+
 	$scope.init();
+	
+	$scope.$watch("songs",function(){
+		if (!$scope.current && $scope.songs) {
+			$scope.current = $scope.songs[0];
+		};
+	});
 }

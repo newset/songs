@@ -79,6 +79,8 @@ class MySQL {
 			$this->lastError = 'Could not connect to database: ' . mysql_error($this->databaseLink);
 			return false;
 		}
+
+		mysql_set_charset('utf8', $this->databaseLink);
 		return true;
 	}
 

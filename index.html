@@ -43,15 +43,15 @@
 
 			<div class="pure-u-g" id="list">
 				<div id="item-list" class="content pure-u">
-					<div ng-repeat="feed in list" ng-click="change_current(feed,$index)" class="email-item pure-g {{ feed == current_item }} read_{{ (feed.read) }}">
+					<div ng-repeat="song in songs" ng-click="change_current(song,$index)" class="email-item pure-g {{ song == current }} }}">
 						<div class="pure-u-1-4">
-							<img class="email-avatar" src="{{ feed.image }}" height="65" width="65">
+							<img class="email-avatar" src="{{ song.image }}" height="65" width="65">
 						</div>
 
 						<div class="pure-u-17-24">
-							<h5 class="email-name">{{feed.site}}</h5>
-							<h4 class="email-subject">{{feed.title}}</h4>
-							<p class="email-desc">{{ feed.from_now }}</p>
+							<h4 class="email-subject">{{song.song}}</h4>
+							<h5 class="email-name">{{song.all_singer}}</h5>
+							<p class="email-desc">{{ song.from_now }}</p>
 						</div>
 					</div>
 					<div class="pure-g email-item" ng-show="songs.length>0">
@@ -80,13 +80,14 @@
 					<div class="email-content pure-g">
 						<div class="email-content-header pure-g">
 							<div class="pure-u-7-12">
-								<h1 class="email-content-title">{{ current_item.song }}</h1>
+								<h1 class="email-content-title">{{ current.song }}</h1>
 								<p class="email-content-subtitle">
-									歌手 <a>{{ current_item.singers }}</a> At <span>{{ current_item.display_date }}</span>
+									歌手 <a>{{ current.all_singer }}</a> <span>{{ current_item.display_date }}</span>
 								</p>
 							</div>
 
 							<div class="pure-u-1-3 email-content-controls" >
+								<a class="pure-button secondary-button pure-button-success" ng-click="search()">歌词</a>
 								<ng-switch on="current_item.star">
 									<a class="pure-button secondary-button" ng-switch-default ng-click="star(current_item)">Check</a>
 									<a ng-switch-when=true class="pure-button-success pure-button secondary-button" ng-click="unstar(current_item)">Uncheck</a>
@@ -97,7 +98,6 @@
 						<div class="email-content-body pure-u-1" ng-bind-html-unsafe="current_item.display">
 						</div>
 						
-						<a class="pure-button secondary-button" href="{{ current_item.link }}" style="letter-spacing: 0em !important; margin-left: 30px;" target="_blank">Read more</a>
 					</div>
 				</div>
 			</div>
