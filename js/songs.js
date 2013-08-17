@@ -22,6 +22,7 @@ var Songs = function($scope,$http){
 
 	$scope.change_current = function(song,index){
 		$scope.current = song;
+		$scope.lyrics = [];
 	}
 
 	$scope.init = function(){
@@ -33,7 +34,6 @@ var Songs = function($scope,$http){
 		
 		$http.get(url).success(function(data){
 			$scope.songs = data;
-			console.log($scope.songs);
 		});
 	}
 
@@ -54,12 +54,12 @@ var Songs = function($scope,$http){
 	}
 
 	$scope.search = function(){
-		var name = current.song,
-			singer = current.singer_1,
-			ulr = 'http://geci.me/api/lyric/'+name;
+		var name = $scope.current.song,
+			singer = $scope.current.singer_1,
+			url = 'http://geci.me/api/lyric/'+name+'?id=1&jsoncallback=?';
 
-		$http.get(url).success(function(data){
-
+		$.getJSON(url,function(data){
+			$scope.lyrics = data.result;
 		});
 	}
 
