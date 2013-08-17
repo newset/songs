@@ -5,6 +5,9 @@ var Songs = function($scope,$http){
 	$scope.songs = [];
 	$scope.current = null;
 	$scope.page = 1;
+	$scope.total = 0;
+	$scope.uncheck = 0;
+	$scope.checked = 0;
 
 	$scope.lyrics = [];
 
@@ -33,6 +36,10 @@ var Songs = function($scope,$http){
 	}
 
 	$scope.prev = function() {
+		
+	}
+
+	$scope.load_more = function(){
 		
 	}
 

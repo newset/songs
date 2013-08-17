@@ -24,15 +24,18 @@
 					
 					
 					<a class="pure-button primary-button call-modal pure-button-success" href="#modal-text" style="margin-bottom: 10px; width: 130px" ng-click="refresh()"><i class="icon-refresh"></i>下一页</a>
-					<a class="pure-button primary-button call-modal pure-button-danger" style="margin-top: 0px; width: 130px" id="logout"><i class="icon-signout"></i></i>上一页</a>
+					<a class="pure-button primary-button call-modal pure-button-error" style="margin-top: 0px; width: 130px" id="logout"><i class="icon-signout"></i></i>上一页</a>
 
 					<div class="pure-menu pure-menu-open">
 						<ul>
 							<li>
-								<a href="#" fitlerlink ng-click="filter_status('unread')" class="filter_link">已完成 <span class="email-count">({{ UnChecked }})</span></a>
+								<a href="#" fitlerlink  class="filter_link">收录总数<span class="email-count">({{ total }})</span></a>
 							</li>
 							<li>
-								<a href="#" fitlerlink ng-click="filter_status('today')" class="filter_link">未完成 <span class="email-count">({{ Checked }})</span></a>
+								<a href="#" fitlerlink ng-click="filter_status(1)" class="filter_link">已完成 <span class="email-count">({{ uncheck }})</span></a>
+							</li>
+							<li>
+								<a href="#" fitlerlink ng-click="filter_status(0)" class="filter_link">未完成 <span class="email-count">({{ checked }})</span></a>
 							</li>
 						</ul>
 					</div>
@@ -54,17 +57,17 @@
 							<p class="email-desc">{{ feed.from_now }}</p>
 						</div>
 					</div>
-					<div class="pure-g email-item" ng-show="feeds.length>0">
+					<div class="pure-g email-item" ng-show="songs.length>0">
 						<div class="pure-u">
 							<a href="#" title="">
 								<h5 class="email-name" ng-click="load_more(page)">Load More</h5>
 							</a>
 						</div>
 					</div>
-					<div class="pure-g email-item" ng-show="feeds.length==0">
+					<div class="pure-g email-item" ng-show="songs.length==0">
 						<div class="pure-u">
 							<a href="#" title="">
-								<h5 class="email-name">No Feed</h5>
+								<h5 class="email-name">No Songs</h5>
 							</a>
 						</div>
 					</div>
@@ -76,7 +79,7 @@
 					
 				</div>				
 				
-				<div class="content pure-u" style="width: 100%">
+				<div class="content pure-u" style="width: 100%" ng-show="current">
 					<div class="email-content pure-g">
 						<div class="email-content-header pure-g">
 							<div class="pure-u-7-12">
