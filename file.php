@@ -1,4 +1,7 @@
 <?php 
+
+// https://code.google.com/p/php-excel-reader/wiki/Documentation
+// http://eden.openovate.com/documentation/start
 	require('spreadsheet-reader/php-excel-reader/excel_reader2.php');
 	require('spreadsheet-reader/SpreadsheetReader.php');
 	include('eden.php');
